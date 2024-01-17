@@ -20,5 +20,10 @@
   border: 2px solid royalblue; /* You can customize the border style */
 }
 
+body {
+  background-color: #efefef;
+  font-family: "Noto Sans Thai", sans-serif;
+}
+
 @tailwind components;
 @tailwind utilities;
