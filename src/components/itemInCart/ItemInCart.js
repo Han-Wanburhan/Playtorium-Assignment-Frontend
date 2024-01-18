@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
-const ItemInCart = () => {
-  const [url, setUrl] = useState(
-    "https://media-cdn.bnn.in.th/268708/Microsoft-Xbox-Controller-USB-C-Cable-Black-1.jpg"
-  );
+const ItemInCart = ({ cartItem }) => {
   const [count, setCount] = useState(0);
 
   const handleCount = (e) => {
@@ -30,17 +27,15 @@ const ItemInCart = () => {
       <div className="w-6/12  flex items-center">
         <div className="flex h-56">
           <div className="flex items-center gap-2 ">
-            <img
-              className="w-48 h-48"
-              src="https://media-cdn.bnn.in.th/268708/Microsoft-Xbox-Controller-USB-C-Cable-Black-1.jpg"
-              alt=""
-            />
-            <span className="text-2xl">Microsoft Xbox Wireless Controller</span>
+            <img className="w-48 h-48" src={cartItem.Product.image} alt="" />
+            <span className="text-3xl">{cartItem.Product.P_Name}</span>
           </div>
         </div>
       </div>
       <div className="w-4/12  flex  justify-between ml-10 items-center">
-        <span className=" text-2xl font-medium">2,500฿</span>
+        <span className=" text-2xl font-medium">
+          {cartItem.Product.P_Price.toLocaleString()}฿
+        </span>
         <div className="flex gap-3">
           <input
             type="submit"
@@ -51,7 +46,7 @@ const ItemInCart = () => {
           <input
             type="text"
             className="w-10 h-10 border-2 rounded-md bg-[#D9D9D9] text-center font-semibold text-2xl"
-            value={count}
+            value={cartItem.Quantity}
             //   onChange={(e) => setCount(Number(e.target.value))}
             onChange={countChange}
           />
@@ -62,7 +57,9 @@ const ItemInCart = () => {
             onClick={handleCount}
           />
         </div>
-        <span className=" text-2xl font-medium">2,500฿</span>
+        <span className=" text-2xl font-medium">
+          {(cartItem.Product.P_Price * cartItem.Quantity).toLocaleString()}฿
+        </span>
       </div>
       <div className="w-2/12 flex justify-center items-center">
         <FaRegTrashAlt className="text-5xl text-[#FF0000]" />
