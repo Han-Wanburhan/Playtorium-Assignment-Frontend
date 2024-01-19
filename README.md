@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+<!-- # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -67,4 +67,48 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 ### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify) -->
+
+# Shopping-app
+
+Short description or tagline for your project.
+
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Introduction
+
+Provide a brief introduction to your project. What does it do? Why is it useful?
+
+## Features
+
+Highlight key features of your project. Use bullet points for easy readability.
+
+- Feature 1
+- Feature 2
+- Feature 3
+
+## Getting Started
+
+Explain how to get started with your project. Include instructions for installation and basic usage.
+
+### Prerequisites
+
+List any prerequisites or dependencies that users need to have installed before they can use your project.
+
+### Installation
+
+Provide step-by-step instructions on how to install your project.
+
+```bash
+# Example installation command
+npm install
+```
