@@ -198,6 +198,7 @@ const Sum = ({ total }) => {
                   className="mr-5 w-40 rounded text-xl font-medium border-2 border-[#5787B3] bg-[#5787b332] ps-2"
                   type="text"
                   id="pointInput"
+                  placeholder={`Max ${maxInputValue}`}
                   disabled={setleted === false}
                   value={pointInput}
                   onChange={(e) => {
