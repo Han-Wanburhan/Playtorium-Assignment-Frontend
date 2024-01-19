@@ -92,13 +92,17 @@ Provide a brief introduction to your project. What does it do? Why is it useful?
 
 Highlight key features of your project. Use bullet points for easy readability.
 
-- Feature 1
-- Feature 2
-- Feature 3
+- Coupon Fixed amount
+- Coupon Percentage discount
+- On Top Percentage discount by item category
+- On Top Discount by points
+- Special campaigns Seasonal
+- Add item to cart
+- Fetch data on backend
 
 ## Getting Started
 
-Explain how to get started with your project. Include instructions for installation and basic usage.
+go to run backend fisrt
 
 ### Prerequisites
 
@@ -111,4 +115,5 @@ Provide step-by-step instructions on how to install your project.
 ```bash
 # Example installation command
 npm install
+npm start
 ```
