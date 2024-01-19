@@ -85,7 +85,7 @@ const Sum = ({ total }) => {
     setSelectedOntopDiscount(selectedValue);
     if (selectedValue === "Dis15PerByCategory") {
       setSelected(false);
-      setPointInput(0);
+      setPointInput();
       try {
         const data = {
           customerid: CustomerID,
@@ -101,6 +101,7 @@ const Sum = ({ total }) => {
         console.log(response.data);
 
         setOntopDiscount(response.data.discount);
+        setPointInput("");
       } catch (error) {
         alert("Error");
         console.error("Error fetching data:", error);
@@ -128,7 +129,7 @@ const Sum = ({ total }) => {
         }
       }
 
-      setPointInput(0);
+      setPointInput("");
       setOntopDiscount(0);
       setSelected(false);
     }
