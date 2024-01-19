@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 const Sum = ({ total }) => {
-  const [totalshow, setTotalShow] = useState(total);
+  console.log(total);
   const [selectedDiscount, setSelectedDiscount] = useState("");
   const [selectedOntopDiscount, setSelectedOntopDiscount] = useState("");
   const [coupondiscount, setCouPonDiscount] = useState(0);
@@ -11,9 +11,10 @@ const Sum = ({ total }) => {
   const [pointInput, setPointInput] = useState();
   const [specialdis, setSpacialDis] = useState(0);
 
-  useEffect(() => {
-    setTotalShow(total);
-  }, [total]);
+  // useEffect(() => {
+  //   // ทำสิ่งที่คุณต้องการเมื่อ total เปลี่ยนแปลง
+  //   // ในที่นี้อาจจะต้องดึงข้อมูลจาก API ใหม่
+  // }, [total]);
 
   const handleCouponDiscountChange = async (event) => {
     const selectedValue = event.target.value;
@@ -32,7 +33,6 @@ const Sum = ({ total }) => {
         );
         console.log(response.data);
 
-        setTotalShow(response.data.newTotal);
         setCouPonDiscount(response.data.discount);
       } catch (error) {
         alert("Error");
@@ -51,7 +51,6 @@ const Sum = ({ total }) => {
         );
         console.log(response.data);
 
-        setTotalShow(response.data.newTotal);
         setCouPonDiscount(response.data.discount);
       } catch (error) {
         alert("Error");
@@ -82,7 +81,6 @@ const Sum = ({ total }) => {
         );
         console.log(response.data);
 
-        setTotalShow(response.data.newtotal);
         setOntopDiscount(response.data.discount);
       } catch (error) {
         alert("Error");
@@ -111,7 +109,6 @@ const Sum = ({ total }) => {
       );
       console.log(response.data);
 
-      setTotalShow(response.data.newtotal);
       setOntopDiscount(response.data.discount);
     } catch (error) {
       alert("Max Value is 20% of total");
@@ -139,7 +136,6 @@ const Sum = ({ total }) => {
         );
         console.log(response.data);
 
-        setTotalShow(response.data.newtotal);
         setSpacialDis(response.data.discount);
       } catch (error) {
         alert("Max Value is 20% of total");
@@ -147,7 +143,6 @@ const Sum = ({ total }) => {
       }
     } else {
       setSpacialDis(0);
-      setTotalShow(total);
     }
   };
 

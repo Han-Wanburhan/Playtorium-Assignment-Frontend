@@ -1,29 +1,65 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
+import axios from "axios";
+
 const ItemInCart = ({ cartItem }) => {
-  const [count, setCount] = useState(0);
+  const [instock, setInstock] = useState(0);
+  const [count, setCount] = useState(1);
+  const [countitem, setCountItem] = useState(1);
+  const [price, setPrice] = useState(0);
+
+  useEffect(() => {
+    // เมื่อ cartItem.Quantity เปลี่ยนแปลง
+    // ให้เรียก setCountItem ด้วยค่าใหม่
+    setCountItem(cartItem.Quantity);
+    setCount(cartItem.Quantity);
+    setInstock(cartItem.Product.P_In_Stock);
+    setPrice(cartItem.Product.P_Price * cartItem.Quantity);
+  }, []);
+
+  const handleClickAdd = async (value) => {
+    console.log(value, count);
+    const CustomerID = parseInt(localStorage.getItem("CustomerID"));
+    try {
+      const data = {
+        customer_id: CustomerID,
+        product_id: value,
+        quantity: count,
+      };
+
+      const response = await axios.post(
+        `http://127.0.0.1:8081/addtocart`,
+        data
+      );
+      // You can handle the response data here
+      console.log(response.data);
+      setCountItem(response.data.cart_item.Quantity);
+      setPrice(response.data.cart_item.Quantity * cartItem.Product.P_Price);
+    } catch (error) {
+      alert("Error");
+      console.error("Error fetching data:", error);
+    }
+  };
 
   const handleCount = (e) => {
     console.log(count);
     if (e.target.value === "-") {
-      if (count > 0) {
+      if (count > 1) {
         setCount(count - 1);
       }
     } else {
-      if (count < 99) {
+      if (count < instock) {
         setCount(count + 1);
       }
     }
-  };
 
-  const countChange = (e) => {
-    const reg = /^[0-9\b]+$/;
-    if (e.target.value === "" || reg.test(e.target.value)) {
-      setCount(Number(e.target.value));
-    }
+    handleClickAdd(cartItem.Product.ID);
   };
   return (
-    <div className="w-8/12 bg-white flex border-b-8 border-[#efefef]  ">
+    <div
+      className="w-8/12 bg-white flex border-b-8 border-[#efefef]  "
+      key={cartItem.Product.ID}
+    >
       <div className="w-6/12  flex items-center">
         <div className="flex h-56">
           <div className="flex items-center gap-2 ">
@@ -46,9 +82,7 @@ const ItemInCart = ({ cartItem }) => {
           <input
             type="text"
             className="w-10 h-10 border-2 rounded-md bg-[#D9D9D9] text-center font-semibold text-2xl"
-            value={cartItem.Quantity}
-            //   onChange={(e) => setCount(Number(e.target.value))}
-            onChange={countChange}
+            value={countitem}
           />
           <input
             type="submit"
@@ -57,9 +91,7 @@ const ItemInCart = ({ cartItem }) => {
             onClick={handleCount}
           />
         </div>
-        <span className=" text-2xl font-medium">
-          {(cartItem.Product.P_Price * cartItem.Quantity).toLocaleString()}฿
-        </span>
+        <span className=" text-2xl font-medium">{price.toLocaleString()}฿</span>
       </div>
       <div className="w-2/12 flex justify-center items-center">
         <FaRegTrashAlt className="text-5xl text-[#FF0000]" />

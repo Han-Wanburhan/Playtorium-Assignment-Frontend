@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 const Carts = () => {
   const [cartItems, setCartItems] = useState([]);
   const [total, setTotal] = useState(0);
-  // const [data, setData] = useState();
   const CustomerID = parseInt(localStorage.getItem("CustomerID"));
 
   useEffect(() => {
