@@ -7,6 +7,7 @@ const Carts = () => {
   const [cartItems, setCartItems] = useState([]);
   const [total, setTotal] = useState(0);
   const CustomerID = parseInt(localStorage.getItem("CustomerID"));
+  console.log(total);
 
   useEffect(() => {
     // Function to fetch data from the API

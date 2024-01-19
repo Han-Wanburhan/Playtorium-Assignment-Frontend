@@ -57,6 +57,25 @@ const Sum = ({ total }) => {
         console.error("Error fetching data:", error);
       }
     } else if (selectedValue === "") {
+      if (seasonalChecked) {
+        try {
+          const data = {
+            total: total - (coupondiscount + ontopdiscount),
+            every: 300,
+            discount: 40,
+          };
+
+          const response = await axios.post(
+            "http://127.0.0.1:8081/total/seasonalcampaigns",
+            data
+          );
+          console.log(response.data);
+
+          setSpacialDis(response.data.discount);
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      }
       console.log(coupondiscount, ontopdiscount, specialdis);
       setCouPonDiscount(0);
     }
@@ -89,6 +108,26 @@ const Sum = ({ total }) => {
     } else if (selectedValue === "DisByPoints") {
       setSelected(true);
     } else if (selectedValue === "") {
+      if (seasonalChecked) {
+        try {
+          const data = {
+            total: total - (coupondiscount + ontopdiscount),
+            every: 300,
+            discount: 40,
+          };
+
+          const response = await axios.post(
+            "http://127.0.0.1:8081/total/seasonalcampaigns",
+            data
+          );
+          console.log(response.data);
+
+          setSpacialDis(response.data.discount);
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      }
+
       setPointInput(0);
       setOntopDiscount(0);
       setSelected(false);
@@ -120,12 +159,13 @@ const Sum = ({ total }) => {
 
   const handleSeasonalChange = async () => {
     setSeasonalChecked(!seasonalChecked);
+    console.log(seasonalChecked);
 
     // เรียก API หรือทำตามที่คุณต้องการ
     if (!seasonalChecked) {
       try {
         const data = {
-          total: total,
+          total: total - (coupondiscount + ontopdiscount),
           every: 300,
           discount: 40,
         };
@@ -138,7 +178,6 @@ const Sum = ({ total }) => {
 
         setSpacialDis(response.data.discount);
       } catch (error) {
-        alert("Max Value is 20% of total");
         console.error("Error fetching data:", error);
       }
     } else {
@@ -238,11 +277,15 @@ const Sum = ({ total }) => {
               <div className="w-7/12 mt-5">
                 <span className="text-xl font-medium">
                   ราคารวม{" "}
-                  {total - (coupondiscount + ontopdiscount + specialdis)}฿
+                  {(
+                    total -
+                    (coupondiscount + ontopdiscount + specialdis)
+                  ).toFixed(2)}
+                  ฿
                 </span>
                 <br />
                 <span className="flex justify-center text-[#0000006d]">
-                  ลด {coupondiscount + ontopdiscount + specialdis}฿
+                  ลด {(coupondiscount + ontopdiscount + specialdis).toFixed(2)}฿
                 </span>
               </div>
               <button className="bg-[#5787B3] w-40 h-10 rounded text-white"></button>
